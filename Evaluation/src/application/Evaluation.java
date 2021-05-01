@@ -13,7 +13,6 @@ public class Evaluation {
 		this(null);
 	}
 	
-	
 	//constructeur avec 2 paramètres
 		public Evaluation(String eval)
 		{
