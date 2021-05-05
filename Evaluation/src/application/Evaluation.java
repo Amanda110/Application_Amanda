@@ -10,14 +10,14 @@ public class Evaluation {
 	//constructeur vide
 	public Evaluation()
 	{
-		this(null);
+		this(null, null);
 	}
 	
 	
 	//constructeur avec 2 paramètres
-		public Evaluation(String eval)
+		public Evaluation(String eval, String date)
 		{
-			this.date = "";
+			this.date = date;
 			this.eval = eval;
 			this.sujet = "";
 			this.note = 0.0;

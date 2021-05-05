@@ -9,7 +9,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -21,9 +20,6 @@ public class EvaluationController implements Initializable{
     private TextField txtNote;
 
     @FXML
-    private DatePicker dpDate;
-
-    @FXML
     private Button btnClear;
 
     @FXML
@@ -31,6 +27,9 @@ public class EvaluationController implements Initializable{
 
     @FXML
     private TextField txtEval;
+    
+    @FXML
+    private TextField txtDate;
 
     @FXML
     private Button btnEffacer;
@@ -80,7 +79,50 @@ public class EvaluationController implements Initializable{
 		noteColumn.setCellValueFactory(new PropertyValueFactory<>("note"));
 		evaluationsTable.setItems(evaluationData);
 		
+		showEvaluations(null);
+		
 	}
 	
+	//Ajouter un étudiant
+	@FXML
+	void ajouter()
+	{
+		Evaluation tmp = new Evaluation();
+
+		tmp = new Evaluation();
+		tmp.setEval(txtEval.getText());
+		tmp.setDate(txtDate.getText());
+		tmp.setNote(Double.parseDouble(txtNote.getText()));
+		tmp.setSujet(cboSujet.getValue());
+			evaluationData.add(tmp);
+			clearFields();
+				
+	}
 	
+	//effacer le contenu des champs
+		@FXML
+		void clearFields()
+		{
+			cboSujet.setValue(null);
+			txtEval.setText("");
+			txtNote.setText("");
+			txtDate.setText("");
+		}
+		
+	//afficher les étudiants
+		public void showEvaluations(Evaluation evaluation)
+		{
+			if(evaluation !=null)
+			{
+				cboSujet.setValue(evaluation.getSujet());
+				txtEval.setText(evaluation.getEval());
+				txtDate.setText(evaluation.getDate());
+				txtNote.setText(Double.toString(evaluation.getNote()));
+				
+			}
+			else
+			{
+				clearFields();
+			}
+		}
 }

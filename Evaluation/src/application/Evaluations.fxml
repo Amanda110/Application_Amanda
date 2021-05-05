@@ -69,9 +69,9 @@
                                                 <Label text="Sujet" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
                                                 <Label text="Note" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
                                                 <Label text="Date" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
-                                                <DatePicker fx:id="dpDate" prefHeight="27.0" prefWidth="278.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                                                 <Label text="Évaluation" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
                                                 <TextField fx:id="txtEval" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                                <TextField fx:id="txtDate" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                                              </children>
                                           </GridPane>
                                           <GridPane GridPane.columnIndex="1" GridPane.rowIndex="3">
@@ -85,9 +85,9 @@
                                              <children>
                                                 <HBox prefHeight="46.0" prefWidth="546.0" spacing="30.0" GridPane.columnIndex="1">
                                                    <children>
-                                                      <Button fx:id="btnAjouter" mnemonicParsing="false" prefHeight="27.0" prefWidth="90.0" text="Ajouter" />
+                                                      <Button fx:id="btnAjouter" mnemonicParsing="false" onAction="#ajouter" prefHeight="27.0" prefWidth="90.0" text="Ajouter" />
                                                       <Button fx:id="btnModifier" mnemonicParsing="false" prefHeight="27.0" prefWidth="94.0" text="Modifier" />
-                                                      <Button fx:id="btnEffacer" mnemonicParsing="false" prefHeight="27.0" prefWidth="86.0" text="Effacer" />
+                                                      <Button fx:id="btnEffacer" mnemonicParsing="false" onAction="#clearFields" prefHeight="27.0" prefWidth="86.0" text="Effacer" />
                                                       <Button fx:id="btnClear" mnemonicParsing="false" prefHeight="27.0" prefWidth="138.0" text="Recommencer" />
                                                    </children>
                                                 </HBox>
