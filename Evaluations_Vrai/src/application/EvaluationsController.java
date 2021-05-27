@@ -10,7 +10,6 @@ package application;
 
 import java.io.File;
 import java.net.URL;
-import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.prefs.Preferences;
@@ -115,25 +114,21 @@ public class EvaluationsController implements Initializable {
 		//Mettre à jour l'affichage d'un évaluation sélectionné
 		evaluationTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue)-> showEvaluations(newValue));	
 
+		
 	}	
-	
-	@FXML
-	public void txtMoyenne()
-	{
-		txtMoyenneAffiche(evaluationData);
-	}
 		
 	//Afficher la moyenne
-	public void txtMoyenneAffiche(List<Evaluation> evaluations)
+	@FXML
+	public void txtMoyenneAffiche()
 	{
 		Double moy = 0.0;
 		
-		for(Evaluation e:evaluations)
+		for(Evaluation e:evaluationData)
 		{
 			double note = e.getNote();
 			moy += note;
 		}
-		double s = evaluations.size();
+		double s = evaluationData.size();
 		moy = moy / s;
 		txtMoyenne.setText(String.format("%.2f",moy));
 		if(txtMoyenne.getText().equals("NaN"))txtMoyenne.setText("N/A");
@@ -166,9 +161,10 @@ public class EvaluationsController implements Initializable {
 				tmp.setSujet(cboSujet.getValue());
 					evaluationData.add(tmp);
 					clearFields();
-				txtMoyenneAffiche(evaluationData);
+				txtMoyenneAffiche();
 			
 			}
+			
 		}
 
 		//effacer le contenu des champs
@@ -194,6 +190,7 @@ public class EvaluationsController implements Initializable {
 				btnModifier.setDisable(false);
 				btnEffacer.setDisable(false);
 				btnRecommencer.setDisable(false);
+			
 				
 			}
 			else
@@ -215,7 +212,7 @@ public class EvaluationsController implements Initializable {
 				evaluation.setNote(Double.parseDouble(txtNote.getText()));
 				evaluation.setSujet(cboSujet.getValue());
 				evaluationTable.refresh();
-				txtMoyenneAffiche(evaluationData);
+				txtMoyenneAffiche();
 			
 			}
 		}
@@ -232,9 +229,17 @@ public class EvaluationsController implements Initializable {
 				alert.setContentText("Confirmer la supression !!");
 				Optional<ButtonType> result = alert.showAndWait();
 				if(result.get() == ButtonType.OK)
-					evaluationTable.getItems().remove(selectedIndex);
+					evaluationTable.getItems().remove(selectedIndex);		
 			}
-			txtMoyenneAffiche(evaluationData);
+			
+			if(selectedIndex == 0)
+			{
+				btnModifier.setDisable(true);
+				btnEffacer.setDisable(true);
+				btnRecommencer.setDisable(true);
+			}
+			txtMoyenneAffiche();
+			
 		}
 		
 		// vérifier champs vides
@@ -366,6 +371,10 @@ public class EvaluationsController implements Initializable {
 		{
 			getevaluationData().clear();
 			setEvaluationFilePath(null);
+			txtMoyenneAffiche();
+			btnModifier.setDisable(true);
+			btnEffacer.setDisable(true);
+			btnRecommencer.setDisable(true);
 		}
 		
 		//Le FileChooser permet à l'usager de choisir le fichier à ouvrir.
@@ -385,6 +394,7 @@ public class EvaluationsController implements Initializable {
 			if (file != null)
 			{
 				loadEvaluationDataFromFile(file);
+				txtMoyenneAffiche();
 			}
 		}
 	    

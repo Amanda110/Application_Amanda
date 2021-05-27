@@ -20,12 +20,6 @@
                   <MenuItem mnemonicParsing="false" onAction="#handleSaveAs" text="Sauvegarder sous" />
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="Edit" />
-          <Menu mnemonicParsing="false" text="Help">
-            <items>
-              <MenuItem mnemonicParsing="false" text="About" />
-            </items>
-          </Menu>
         </menus>
       </MenuBar>
    </top>
@@ -126,9 +120,9 @@
                                     <Button fx:id="btnRecommencer" mnemonicParsing="false" onAction="#clearFields" prefHeight="28.0" prefWidth="117.0" styleClass="warning" text="Recommencer" />
                                  </children>
                               </HBox>
-                              <HBox alignment="CENTER_RIGHT" prefHeight="49.0" prefWidth="471.0" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                              <HBox alignment="CENTER_RIGHT" prefHeight="49.0" prefWidth="471.0" spacing="20.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                  <children>
-                                    <Button mnemonicParsing="false" onAction="#txtMoyenne" styleClass="success" text="Moyenne" />
+                                    <Label text="Moyenne :" />
                                     <TextField fx:id="txtMoyenne" alignment="TOP_LEFT" editable="false" prefHeight="27.0" prefWidth="96.0" text="N/A" />
                                  </children>
                               </HBox>
